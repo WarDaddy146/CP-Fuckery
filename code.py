@@ -1,23 +1,19 @@
 import board
-import digitalio
+import neopixel
 import time
-pins = [
-    board.P0_02, board.P0_04, board.P0_06, board.P0_08,
-    board.P0_09, board.P0_10, board.P0_11, board.P0_12,
-    board.P0_13, board.P0_15, board.P0_17, board.P0_20,
-    board.P0_22, board.P0_24, board.P0_26, board.P0_29,
-    board.P0_31, board.P1_00, board.P1_01, board.P1_02,
-    board.P1_04, board.P1_06, board.P1_07, board.P1_11,
-    board.P1_13, board.P1_15, board.LED, board.VCC_OFF,
-    board.BAT_VOLT, board.NFC1, board.NFC2,
-]
 
-for p in pins:
-    if p is not None:
-        try:
-            d = digitalio.DigitalInOut(p)
-            d.direction = digitalio.Direction.OUTPUT
-            d.value = True
-        except Exception:
-            pass
-        time.sleep(1000)
+# Change the 1 to however many LEDs you have!
+# Example: neopixel.NeoPixel(board.GP2, 30, brightness=0.1)
+pixel = neopixel.NeoPixel(board.D2, 1, brightness=0.9)
+
+# pixel[0] lights up the first LED
+# pixel[1] lights up the second LED
+# pixel[2] lights up the third LED... and so on!
+
+while True:
+    print("Turning on the LED")
+    pixel[0] = (255, 0, 0)
+    time.sleep(10)
+    print("Turning off the LED")
+    pixel[0] = (0, 0, 0)
+    time.sleep(1)
