@@ -43,6 +43,4 @@ raw_hid = usb_hid.Device(
     out_report_lengths=(64,),
 )
 
-# Enable: keyboard (so key presses still work as a normal keyboard) + raw HID.
-# If you want the consumer-control or mouse devices too, add them here.
 usb_hid.enable((usb_hid.Device.KEYBOARD, raw_hid))
