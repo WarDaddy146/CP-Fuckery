@@ -32,10 +32,10 @@ for dev in usb_hid.devices:
 while True:
     r = raw_hid.get_last_received_report()
     if r is not None and len(r) == 64:
-        page = r[0]
-        if page < 8:
-            fb[page * 64 + 1 : (page + 1) * 64] = r[1:64]
-        elif page == 0xFF:
+        chunk = r[0]
+        if chunk < 8:
+            fb[chunk * 64 + 1 : (chunk + 1) * 64] = r[1:64]
+        elif chunk == 0xFF:
             for i in range(8):
                 fb[i * 64] = r[1 + i]
             for offset in range(0, 512, 32):
